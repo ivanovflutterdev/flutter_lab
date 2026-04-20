@@ -14,6 +14,29 @@ class Screen extends StatelessWidget {
             color: Colors.blue,
             borderRadius: BorderRadius.circular(16),
           ),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Align(
+              alignment: Alignment.bottomRight,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.star, color: Colors.yellow),
+                  SizedBox(width: 10),
+                  const Text(
+                    'Привіт, Flutter!',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Icon(Icons.star, color: Colors.yellow),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );
