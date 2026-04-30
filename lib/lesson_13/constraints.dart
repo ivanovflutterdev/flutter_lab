@@ -639,3 +639,7 @@ class TrainingExample22 extends StatelessWidget {
     );
   }
 }
+
+/// Відповідь: LimitedBox не впливає на розмір, тому що він застосовує свої
+/// обмеження тільки в unbounded контексті.
+/// LimitedBox працює тільки в unbounded контексті
