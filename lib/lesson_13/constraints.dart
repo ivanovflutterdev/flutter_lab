@@ -49,10 +49,7 @@ class _WidgetConstrainsTrainingScreenState
           underline: const SizedBox.shrink(),
           items: List.generate(
             _tasks.length,
-            (i) => DropdownMenuItem(
-              value: i,
-              child: Text('Task ${i + 1}'),
-            ),
+            (i) => DropdownMenuItem(value: i, child: Text('Task ${i + 1}')),
           ),
           onChanged: (v) {
             final index = v ?? 0;
@@ -82,11 +79,7 @@ class TrainingExample1 extends StatelessWidget {
           Positioned(
             right: 0,
             top: 0,
-            child: Container(
-              width: 150,
-              height: 150,
-              color: Colors.red,
-            ),
+            child: Container(width: 150, height: 150, color: Colors.red),
           ),
         ],
       ),
@@ -106,17 +99,8 @@ class TrainingExample2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Container(
-          width: 100,
-          height: 200,
-          color: Colors.green,
-        ),
-        Expanded(
-          child: Container(
-            height: 200,
-            color: Colors.blue,
-          ),
-        ),
+        Container(width: 100, height: 200, color: Colors.green),
+        Expanded(child: Container(height: 200, color: Colors.blue)),
       ],
     );
   }
@@ -161,11 +145,7 @@ class TrainingExample4 extends StatelessWidget {
         color: Colors.green,
         height: 200,
         width: 200,
-        child: Container(
-          color: Colors.orange,
-          height: 200,
-          width: 200,
-        ),
+        child: Container(color: Colors.orange, height: 200, width: 200),
       ),
     );
   }
@@ -192,11 +172,7 @@ class TrainingExample5 extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(16),
           color: Colors.blue,
-          child: Container(
-            color: Colors.yellow,
-            height: 100,
-            width: 100,
-          ),
+          child: Container(color: Colors.yellow, height: 100, width: 100),
         ),
       ),
     );
@@ -262,7 +238,7 @@ class TrainingExample8 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded( flex: 1, child: Container(color: Colors.red)),
+        Expanded(flex: 1, child: Container(color: Colors.red)),
         Expanded(flex: 2, child: Container(color: Colors.green)),
         Expanded(flex: 1, child: Container(color: Colors.blue)),
       ],
@@ -347,21 +323,34 @@ class TrainingExample11 extends StatelessWidget {
 
 class TrainingExample12 extends StatelessWidget {
   const TrainingExample12({super.key});
+
   @override
   Widget build(BuildContext context) {
     const redContainerWidth = 100.0;
 
-    return Row(
-      children: [
-        Container(
-          color: Colors.red,
-          height: 100,
-          width: redContainerWidth,
-          child: const Text('Hi'),
-        ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final maxWidth = constraints.maxWidth;
 
-        Expanded(child: Container(color: Colors.green, height: 100)),
-      ],
+        final redWidth = redContainerWidth > maxWidth
+            ? maxWidth
+            : redContainerWidth;
+
+        final showGreen = redContainerWidth < maxWidth;
+
+        return Row(
+          children: [
+            Container(
+              color: Colors.red,
+              height: 100,
+              width: redWidth,
+              child: Text('Hi'),
+            ),
+            if (showGreen)
+              Expanded(child: Container(color: Colors.green, height: 100)),
+          ],
+        );
+      },
     );
   }
 }
@@ -453,7 +442,7 @@ class TrainingExample16 extends StatelessWidget {
 }
 
 // Task 17: ConstrainedBox
-// Очікуваний результат: кнопка шириною мінімум 250 і по центру екрану 
+// Очікуваний результат: кнопка шириною мінімум 250 і по центру екрану
 // (і по ширині і по висоті)
 // При встановленні ширини кнопки в 1000px - кнопка розтягується на всю
 // допустиму ширину і не має бути помилки
@@ -544,11 +533,7 @@ class TrainingExample20 extends StatelessWidget {
           child: OverflowBox(
             maxHeight: double.infinity,
             maxWidth: double.infinity,
-            child: Container(
-              color: Colors.green,
-              width: 200,
-              height: 200,
-            ),
+            child: Container(color: Colors.green, width: 200, height: 200),
           ),
         ),
         Container(color: Colors.blue, height: 100, width: double.infinity),
@@ -572,11 +557,7 @@ class TrainingExample21 extends StatelessWidget {
           children: [
             LimitedBox(
               maxHeight: 50,
-              child: Container(
-                color: Colors.red,
-                height: 100,
-                width: 100,
-              ),
+              child: Container(color: Colors.red, height: 100, width: 100),
             ),
           ],
         ),
@@ -587,11 +568,7 @@ class TrainingExample21 extends StatelessWidget {
               height: 100,
               child: LimitedBox(
                 maxHeight: 50,
-                child: Container(
-                  color: Colors.green,
-                  height: 100,
-                  width: 100,
-                ),
+                child: Container(color: Colors.green, height: 100, width: 100),
               ),
             ),
           ],
