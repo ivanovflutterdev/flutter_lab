@@ -607,6 +607,14 @@ class TrainingExample21 extends StatelessWidget {
   }
 }
 
+/// Відповідь: LimitedBox застосовує свої обмеження тільки тоді,
+/// коли отримує unbounded constraints від батька.
+/// У першому випадку Column передає unbounded height, тому LimitedBox
+/// обмежує висоту до 50.
+/// У другому випадку LimitedBox знаходиться всередині SizedBox з height: 100,
+/// який дає жорсткі constraints. Тому LimitedBox ігнорує свої
+/// maxHeight і просто підкоряється обмеженням SizedBox.
+
 // Task 22:
 // Чому LimitedBox не впливає на розмір зеленого контейнера?
 
