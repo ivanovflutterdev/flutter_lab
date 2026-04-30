@@ -369,9 +369,12 @@ class TrainingExample13 extends StatelessWidget {
         width: 200,
         height: 50,
         color: Colors.amber,
-        child: const Text(
-          'Дуже довгий текст який не поміщається',
-          style: TextStyle(fontSize: 30),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: const Text(
+            'Дуже довгий текст який не поміщається',
+            style: TextStyle(fontSize: 30),
+          ),
         ),
       ),
     );
