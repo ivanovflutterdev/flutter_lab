@@ -447,7 +447,7 @@ class TrainingExample16 extends StatelessWidget {
     );
   }
 }
-// Відповідь: ConstrainedBox не застосовується, тому що батьківський віджет 
+// Відповідь: ConstrainedBox не застосовується, тому що батьківський віджет
 // SizedBox вже задав constraints 100x100. Дочірній ConstrainedBox не може
 // розширити ці обмеження. Constraints передаються
 // зверху вниз, і child не може перевищити обмеження, встановлені батьком.
@@ -462,21 +462,20 @@ class TrainingExample17 extends StatelessWidget {
   const TrainingExample17({super.key});
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 250),
-            child: SizedBox(
-              width: 1000,
-              child: ElevatedButton(
-                onPressed: () {},
-                child: const Text('Press me'),
-              ),
-            ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: 250,
+          maxWidth: MediaQuery.of(context).size.width,
+        ),
+        child: SizedBox(
+          width: 1000,
+          child: ElevatedButton(
+            onPressed: () {},
+            child: const Text('Press me'),
           ),
         ),
-      ],
+      ),
     );
   }
 }
