@@ -262,9 +262,9 @@ class TrainingExample8 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(child: Container(color: Colors.red)),
-        Expanded(child: Container(color: Colors.green)),
-        Expanded(child: Container(color: Colors.blue)),
+        Expanded( flex: 1, child: Container(color: Colors.red)),
+        Expanded(flex: 2, child: Container(color: Colors.green)),
+        Expanded(flex: 1, child: Container(color: Colors.blue)),
       ],
     );
   }
