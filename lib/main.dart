@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lab/lesson_11/homework_11_screen.dart';
 import 'package:flutter_lab/lesson_12/visit_evaluation_screen.dart';
+import 'package:flutter_lab/lesson_13/constraints.dart';
 
 void main() {
   runApp(FlutterWifgetsApp());
@@ -37,17 +38,27 @@ class HomeScreen extends StatelessWidget {
               title: 'Lesson 11 - Homework',
               onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute<void>(
-                    builder: (context) => const Screen()),
+                MaterialPageRoute<void>(builder: (context) => const Screen()),
               ),
             ),
-            SizedBox(height: 12,),
+            SizedBox(height: 12),
             FeatureCard(
               title: 'Lesson 12 - Visit Evaluation',
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute<void>(
-                    builder: (context) => const VisitEvaluationScreen()),
+                  builder: (context) => const VisitEvaluationScreen(),
+                ),
+              ),
+            ),
+            SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 13 - Constraints',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const WidgetConstrainsTrainingScreen(),
+                ),
               ),
             ),
           ],
@@ -58,7 +69,6 @@ class HomeScreen extends StatelessWidget {
 }
 
 class FeatureCard extends StatelessWidget {
-
   const FeatureCard({required this.title, required this.onTap, super.key});
   final String title;
   final VoidCallback onTap;
