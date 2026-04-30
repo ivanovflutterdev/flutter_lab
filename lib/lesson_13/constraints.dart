@@ -488,6 +488,7 @@ class TrainingExample17 extends StatelessWidget {
 
 class TrainingExample18 extends StatelessWidget {
   const TrainingExample18({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -495,7 +496,13 @@ class TrainingExample18 extends StatelessWidget {
         color: Colors.blue,
         width: 200,
         height: 200,
-        child: Container(color: Colors.red, width: 50, height: 50),
+        child: UnconstrainedBox(
+          child: Container(
+            color: Colors.red,
+            width: 50,
+            height: 50,
+          ),
+        ),
       ),
     );
   }
