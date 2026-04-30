@@ -215,9 +215,13 @@ class TrainingExample6 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        alignment: Alignment.center,
+        width: 200,
+        height: 200,
         color: Colors.orange,
         child: const Text(
           'Lorem ipsum dolor sit amet, consectetur',
+          textAlign: TextAlign.center,
         ),
       ),
     );
