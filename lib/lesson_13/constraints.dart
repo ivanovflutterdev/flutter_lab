@@ -300,9 +300,11 @@ class TrainingExample10 extends StatelessWidget {
       child: Row(
         children: [
           Container(color: Colors.orange, height: 100, width: 100),
-          ListView.builder(
-            itemCount: 20,
-            itemBuilder: (context, index) => Text('Item $index'),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 20,
+              itemBuilder: (context, index) => Text('Item $index'),
+            ),
           ),
         ],
       ),
