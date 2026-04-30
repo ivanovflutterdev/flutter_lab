@@ -447,6 +447,10 @@ class TrainingExample16 extends StatelessWidget {
     );
   }
 }
+// Відповідь: ConstrainedBox не застосовується, тому що батьківський віджет 
+// SizedBox вже задав constraints 100x100. Дочірній ConstrainedBox не може
+// розширити ці обмеження. Constraints передаються
+// зверху вниз, і child не може перевищити обмеження, встановлені батьком.
 
 // Task 17: ConstrainedBox
 // Очікуваний результат: кнопка шириною мінімум 250 і по центру екрану
