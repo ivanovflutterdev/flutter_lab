@@ -155,13 +155,17 @@ class TrainingExample4 extends StatelessWidget {
   const TrainingExample4({super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
-
+    return Center(
       child: Container(
-        color: Colors.orange,
+        padding: EdgeInsets.all(10),
+        color: Colors.green,
         height: 200,
         width: 200,
+        child: Container(
+          color: Colors.orange,
+          height: 200,
+          width: 200,
+        ),
       ),
     );
   }
