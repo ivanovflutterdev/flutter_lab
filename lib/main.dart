@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lab/lesson_11/homework_11_screen.dart';
 import 'package:flutter_lab/lesson_12/visit_evaluation_screen.dart';
 import 'package:flutter_lab/lesson_13/constraints.dart';
+import 'package:flutter_lab/router/app_router.dart';
 
 void main() {
   runApp(FlutterWifgetsApp());
@@ -12,9 +13,9 @@ class FlutterWifgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      routerConfig: router,
     );
   }
 }
