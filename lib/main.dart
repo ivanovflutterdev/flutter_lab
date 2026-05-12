@@ -47,6 +47,11 @@ class HomeScreen extends StatelessWidget {
               title: 'Lesson 13 - Constraints',
               onTap: () => context.go('/constraints'),
             ),
+            SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 18 - CounterApp',
+              onTap: () => context.go('/counter-app'),
+            ),
           ],
         ),
       ),

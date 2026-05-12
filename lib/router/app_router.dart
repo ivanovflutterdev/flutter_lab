@@ -1,6 +1,9 @@
 import 'package:flutter_lab/lesson_11/homework_11_screen.dart';
 import 'package:flutter_lab/lesson_12/visit_evaluation_screen.dart';
 import 'package:flutter_lab/lesson_13/constraints.dart';
+import 'package:flutter_lab/lesson_18/homework_%D1%81ubit/homework_%D1%81ubit_screen.dart';
+import 'package:flutter_lab/lesson_18/homework_bloc/homework_bloc_screen.dart';
+import 'package:flutter_lab/lesson_18/state_management_base_screen.dart';
 import 'package:flutter_lab/main.dart';
 import 'package:go_router/go_router.dart';
 
@@ -19,6 +22,20 @@ final router = GoRouter(
         GoRoute(
           path: 'visit-evaluation',
           builder: (context, state) => VisitEvaluationScreen(),
+        ),
+        GoRoute(
+          path: 'counter-app',
+          builder: (context, state) => StateManagementBaseScreen(),
+          routes: [
+            GoRoute(
+              path: 'cubit',
+              builder: (context, state) => HomeworkCubitScreen(),
+            ),
+            GoRoute(
+              path: 'bloc',
+              builder: (context, state) => HomeworkBlocScreen(),
+            ),
+          ],
         ),
       ],
     ),
