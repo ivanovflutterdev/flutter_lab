@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/lesson_18/homework_%D1%81ubit/counter_cubit.dart';
 import 'package:flutter_lab/router/app_router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -23,36 +25,39 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter Lab'),
-        backgroundColor: Colors.blue.shade100,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            FeatureCard(
-              title: 'Lesson 11 - Homework',
-              onTap: () => context.go('/screen'),
-            ),
-            SizedBox(height: 12),
-            FeatureCard(
-              title: 'Lesson 12 - Visit Evaluation',
-              onTap: () => context.go('/visit-evaluation'),
-            ),
-            SizedBox(height: 12),
-            FeatureCard(
-              title: 'Lesson 13 - Constraints',
-              onTap: () => context.go('/constraints'),
-            ),
-            SizedBox(height: 12),
-            FeatureCard(
-              title: 'Lesson 18 - CounterApp',
-              onTap: () => context.go('/counter-app'),
-            ),
-          ],
+    return BlocProvider(
+      create: (context) => CounterCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Flutter Lab'),
+          backgroundColor: Colors.blue.shade100,
+        ),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              FeatureCard(
+                title: 'Lesson 11 - Homework',
+                onTap: () => context.go('/screen'),
+              ),
+              SizedBox(height: 12),
+              FeatureCard(
+                title: 'Lesson 12 - Visit Evaluation',
+                onTap: () => context.go('/visit-evaluation'),
+              ),
+              SizedBox(height: 12),
+              FeatureCard(
+                title: 'Lesson 13 - Constraints',
+                onTap: () => context.go('/constraints'),
+              ),
+              SizedBox(height: 12),
+              FeatureCard(
+                title: 'Lesson 13 - CounterApp',
+                onTap: () => context.go('/counter-app'),
+              ),
+            ],
+          ),
         ),
       ),
     );

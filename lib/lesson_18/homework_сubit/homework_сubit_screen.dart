@@ -1,20 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/lesson_18/homework_сubit/counter_cubit.dart';
 
 class HomeworkCubitScreen extends StatelessWidget {
   const HomeworkCubitScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Cubit Counter'),
-        backgroundColor: Colors.blue.shade100,
-      ),
-      body: Center(
-        child: Text(
-          'This is the Cubit Counter Screen',
-          style: TextStyle(fontSize: 18),
-        ),
+    return BlocProvider(
+      create: (context) => CounterCubit(),
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Cubit Counter Example'),
+              backgroundColor: Colors.green.shade100,
+            ),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  BlocBuilder<CounterCubit, int>(
+                    builder: (context, state) {
+                      return Text(
+                        '$state',
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      );
+                    },
+                  ),
+                ],
+              ),
+            ),
+            floatingActionButton: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FloatingActionButton(
+                  heroTag: 'decrement',
+                  onPressed: () {
+                    context.read<CounterCubit>().decrement();
+                  },
+                  tooltip: 'Decrement',
+                  child: const Icon(Icons.remove),
+                ),
+                const SizedBox(width: 16),
+                FloatingActionButton(
+                  heroTag: 'increment',
+                  onPressed: () {
+                    context.read<CounterCubit>().increment();
+                  },
+                  tooltip: 'Increment',
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
