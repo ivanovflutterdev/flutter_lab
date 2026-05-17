@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_lab/lesson_18/homework_%D1%81ubit/counter_cubit.dart';
+import 'package:flutter_lab/lesson_18/homework_bloc/counter_bloc.dart';
+import 'package:flutter_lab/lesson_18/homework_cubit/counter_cubit.dart';
 import 'package:flutter_lab/router/app_router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -13,9 +14,15 @@ class FlutterWifgetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: router,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CounterCubit()),
+        BlocProvider(create: (context) => CounterBloc()),
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: router,
+      ),
     );
   }
 }
@@ -25,39 +32,36 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CounterCubit(),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Flutter Lab'),
-          backgroundColor: Colors.blue.shade100,
-        ),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              FeatureCard(
-                title: 'Lesson 11 - Homework',
-                onTap: () => context.go('/screen'),
-              ),
-              SizedBox(height: 12),
-              FeatureCard(
-                title: 'Lesson 12 - Visit Evaluation',
-                onTap: () => context.go('/visit-evaluation'),
-              ),
-              SizedBox(height: 12),
-              FeatureCard(
-                title: 'Lesson 13 - Constraints',
-                onTap: () => context.go('/constraints'),
-              ),
-              SizedBox(height: 12),
-              FeatureCard(
-                title: 'Lesson 13 - CounterApp',
-                onTap: () => context.go('/counter-app'),
-              ),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Lab'),
+        backgroundColor: Colors.blue.shade100,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            FeatureCard(
+              title: 'Lesson 11 - Homework',
+              onTap: () => context.go('/screen'),
+            ),
+            SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 12 - Visit Evaluation',
+              onTap: () => context.go('/visit-evaluation'),
+            ),
+            SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 13 - Constraints',
+              onTap: () => context.go('/constraints'),
+            ),
+            SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 13 - CounterApp',
+              onTap: () => context.go('/counter-app'),
+            ),
+          ],
         ),
       ),
     );
