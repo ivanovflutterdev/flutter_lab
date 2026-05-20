@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lab/lesson_18/homework_bloc/counter_bloc.dart';
 
-class HomeworkBlocScreen extends StatefulWidget {
+class HomeworkBlocScreen extends StatelessWidget {
   const HomeworkBlocScreen({super.key});
 
-  @override
-  State<HomeworkBlocScreen> createState() => _HomeworkBlocScreenState();
-}
-
-class _HomeworkBlocScreenState extends State<HomeworkBlocScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

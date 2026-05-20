@@ -19,12 +19,12 @@ class StateManagementBaseScreen extends StatelessWidget {
           children: [
             FeatureCard(
               title: 'Cubit Example',
-              onTap: () => context.go('/counter-app/cubit'),
+              onTap: () => context.goNamed('/counter-app/cubit'),
             ),
             SizedBox(height: 12),
             FeatureCard(
               title: 'Bloc Example',
-              onTap: () => context.go('/counter-app/bloc'),
+              onTap: () => context.goNamed('/counter-app/bloc'),
             ),
           ],
         ),
