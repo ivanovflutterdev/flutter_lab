@@ -18,8 +18,7 @@ class RateAppCubit extends Cubit<RateAppState> {
 
   Future<void> submitRating() async {
     emit(state.copyWith(status: RateAppStatus.loading));
-    // ignore: inference_failure_on_instance_creation
-    await Future.delayed(const Duration(milliseconds: 1000));
+    await Future<void>.delayed(const Duration(milliseconds: 1000));
     emit(state.copyWith(status: RateAppStatus.success));
   }
 }

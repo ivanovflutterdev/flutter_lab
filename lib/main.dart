@@ -66,7 +66,7 @@ class HomeScreen extends StatelessWidget {
            SizedBox(height: 12),
             FeatureCard(
               title: 'Lesson 19 - Rate screen',
-              onTap: () => context.go('/rate-app'),
+              onTap: () => context.goNamed('rateApp'),
             ),
           ],
         ),

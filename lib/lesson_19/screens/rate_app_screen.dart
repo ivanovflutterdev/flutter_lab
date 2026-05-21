@@ -57,147 +57,158 @@ class RateAppScreen extends StatelessWidget {
           ),
         );
       },
-      child: Scaffold(
-        backgroundColor: _screenBlue,
-        appBar: AppBar(
-          iconTheme: const IconThemeData(color: Colors.white),
-          title: const Text(
-            'Flutter Lab',
-            style: TextStyle(color: Colors.white),
+      child: PopScope(
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop &&
+              context.read<RateAppCubit>().state.status !=
+                  RateAppStatus.success) {
+            context.read<RateAppCubit>().resetRating();
+          }
+        },
+        child: Scaffold(
+          backgroundColor: _screenBlue,
+          appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            title: const Text(
+              'Flutter Lab',
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: _primaryBlue,
           ),
-          backgroundColor: _primaryBlue,
-        ),
-        body: BlocBuilder<RateAppCubit, RateAppState>(
-          builder: (context, state) {
-            final isLoading = state.status == RateAppStatus.loading;
-            final isSuccess = state.status == RateAppStatus.success;
+          body: BlocBuilder<RateAppCubit, RateAppState>(
+            builder: (context, state) {
+              final isLoading = state.status == RateAppStatus.loading;
+              final isSuccess = state.status == RateAppStatus.success;
 
-            return SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 48),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 32,
-                        horizontal: 16,
-                      ),
-                      decoration: BoxDecoration(
-                        color: _cardBlue,
-                        borderRadius: BorderRadius.circular(16),
-                        boxShadow: const [
-                          BoxShadow(
-                            blurRadius: 10,
-                            offset: Offset(0, 4),
-                            color: Colors.black12,
-                          ),
-                        ],
-                      ),
-                      child: Column(
-                        children: [
-                          Text(
-                            isSuccess
-                                ? 'You rated the app'
-                                : 'How would you rate our app?',
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: _primaryBlue,
+              return SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 48),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 32,
+                          horizontal: 16,
+                        ),
+                        decoration: BoxDecoration(
+                          color: _cardBlue,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 10,
+                              offset: Offset(0, 4),
+                              color: Colors.black12,
                             ),
-                          ),
-                          const SizedBox(height: 16),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: List.generate(5, (index) {
-                              final isSelected =
-                                  isSuccess || index < state.rating;
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              isSuccess
+                                  ? 'You rated the app'
+                                  : 'How would you rate our app?',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: _primaryBlue,
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: List.generate(5, (index) {
+                                final isSelected =
+                                    isSuccess || index < state.rating;
 
-                              return IconButton(
-                                onPressed: isLoading || isSuccess
-                                    ? null
-                                    : () {
-                                        context
-                                            .read<RateAppCubit>()
-                                            .selectRating(index + 1);
-                                      },
-                                icon: Icon(
-                                  isSelected
-                                      ? Icons.star_rounded
-                                      : Icons.star_outline_rounded,
-                                  color: isSelected
-                                      ? _filledStarColor
-                                      : _emptyStarColor,
-                                  size: 34,
-                                ),
-                              );
-                            }),
-                          ),
-                          const SizedBox(height: 16),
-                          isSuccess
-                              ? Row(
-                                  children: [
-                                    _buildButton(
-                                      title: 'Rate again',
-                                      backgroundColor: _primaryBlue,
-                                      onPressed: () {
-                                        context
-                                            .read<RateAppCubit>()
-                                            .resetRating();
-                                      },
-                                    ),
-                                  ],
-                                )
-                              : Row(
-                                  children: [
-                                    _buildButton(
-                                      title: 'Submit rating',
-                                      backgroundColor: _primaryBlue,
-                                      onPressed: isLoading || state.rating == 0
-                                          ? null
-                                          : () {
-                                              context
-                                                  .read<RateAppCubit>()
-                                                  .submitRating();
-                                            },
-                                      child: isLoading
-                                          ? const SizedBox(
-                                              width: 20,
-                                              height: 20,
-                                              child: CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                                color: Colors.white,
-                                              ),
-                                            )
-                                          : null,
-                                    ),
-                                    const SizedBox(width: 10),
-                                    _buildButton(
-                                      title: 'Reset rating',
-                                      backgroundColor: _secondaryBlue,
-                                      icon: const Icon(
-                                        Icons.refresh,
-                                        color: Colors.white,
+                                return IconButton(
+                                  onPressed: isLoading || isSuccess
+                                      ? null
+                                      : () {
+                                          context
+                                              .read<RateAppCubit>()
+                                              .selectRating(index + 1);
+                                        },
+                                  icon: Icon(
+                                    isSelected
+                                        ? Icons.star_rounded
+                                        : Icons.star_outline_rounded,
+                                    color: isSelected
+                                        ? _filledStarColor
+                                        : _emptyStarColor,
+                                    size: 34,
+                                  ),
+                                );
+                              }),
+                            ),
+                            const SizedBox(height: 16),
+                            isSuccess
+                                ? Row(
+                                    children: [
+                                      _buildButton(
+                                        title: 'Rate again',
+                                        backgroundColor: _primaryBlue,
+                                        onPressed: () {
+                                          context
+                                              .read<RateAppCubit>()
+                                              .resetRating();
+                                        },
                                       ),
-                                      onPressed: isLoading
-                                          ? null
-                                          : () {
-                                              context
-                                                  .read<RateAppCubit>()
-                                                  .resetRating();
-                                            },
-                                    ),
-                                  ],
-                                ),
-                        ],
+                                    ],
+                                  )
+                                : Row(
+                                    children: [
+                                      _buildButton(
+                                        title: 'Submit rating',
+                                        backgroundColor: _primaryBlue,
+                                        onPressed:
+                                            isLoading || state.rating == 0
+                                            ? null
+                                            : () {
+                                                context
+                                                    .read<RateAppCubit>()
+                                                    .submitRating();
+                                              },
+                                        child: isLoading
+                                            ? const SizedBox(
+                                                width: 20,
+                                                height: 20,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                      strokeWidth: 2,
+                                                      color: Colors.white,
+                                                    ),
+                                              )
+                                            : null,
+                                      ),
+                                      const SizedBox(width: 10),
+                                      _buildButton(
+                                        title: 'Reset rating',
+                                        backgroundColor: _secondaryBlue,
+                                        icon: const Icon(
+                                          Icons.refresh,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: isLoading
+                                            ? null
+                                            : () {
+                                                context
+                                                    .read<RateAppCubit>()
+                                                    .resetRating();
+                                              },
+                                      ),
+                                    ],
+                                  ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                  ],
+                      const Spacer(),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );

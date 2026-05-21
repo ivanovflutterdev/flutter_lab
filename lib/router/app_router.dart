@@ -38,7 +38,11 @@ final router = GoRouter(
             ),
           ],
         ),
-        GoRoute(path: 'rate-app', builder: (context, state) => RateAppScreen()),
+        GoRoute(
+          name: 'rateApp',
+          path: '/rate-app',
+          builder: (context, state) => const RateAppScreen(),
+        ),
       ],
     ),
   ],
