@@ -5,6 +5,7 @@ import 'package:flutter_lab/lesson_18/homework_bloc/homework_bloc_screen.dart';
 import 'package:flutter_lab/lesson_18/homework_cubit/homework_cubit_screen.dart';
 import 'package:flutter_lab/lesson_18/state_management_base_screen.dart';
 import 'package:flutter_lab/lesson_19/screens/rate_app_screen.dart';
+import 'package:flutter_lab/lesson_21/explicit_animations_screen.dart';
 import 'package:flutter_lab/main.dart';
 import 'package:go_router/go_router.dart';
 
@@ -42,6 +43,11 @@ final router = GoRouter(
           name: 'rateApp',
           path: '/rate-app',
           builder: (context, state) => const RateAppScreen(),
+        ),
+                GoRoute(
+          name: 'explicitAnimations',
+          path: '/explicit-animations',
+          builder: (context, state) => const ExplicitAnimationsScreen(),
         ),
       ],
     ),
