@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_lab/lesson_18/homework_bloc/counter_bloc.dart';
 import 'package:flutter_lab/lesson_18/homework_cubit/counter_cubit.dart';
+import 'package:flutter_lab/lesson_19/bloc/rate_app_cubit.dart';
 import 'package:flutter_lab/router/app_router.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,6 +19,7 @@ class FlutterWifgetsApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => CounterCubit()),
         BlocProvider(create: (context) => CounterBloc()),
+        BlocProvider(create: (context) => RateAppCubit()),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -60,6 +62,11 @@ class HomeScreen extends StatelessWidget {
             FeatureCard(
               title: 'Lesson 13 - CounterApp',
               onTap: () => context.go('/counter-app'),
+            ),
+           SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 19 - Rate screen',
+              onTap: () => context.goNamed('rateApp'),
             ),
           ],
         ),
