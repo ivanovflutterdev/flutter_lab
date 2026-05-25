@@ -63,10 +63,15 @@ class HomeScreen extends StatelessWidget {
               title: 'Lesson 13 - CounterApp',
               onTap: () => context.go('/counter-app'),
             ),
-           SizedBox(height: 12),
+            SizedBox(height: 12),
             FeatureCard(
               title: 'Lesson 19 - Rate screen',
               onTap: () => context.goNamed('rateApp'),
+            ),
+            SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 21 - Explicit Animations',
+              onTap: () => context.goNamed('explicitAnimations'),
             ),
           ],
         ),
