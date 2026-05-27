@@ -1,3 +1,4 @@
+import 'package:flutter_lab/error_handling_homework/presentation/ui/screens/user_profile_homework_screen.dart';
 import 'package:flutter_lab/lesson_11/homework_11_screen.dart';
 import 'package:flutter_lab/lesson_12/visit_evaluation_screen.dart';
 import 'package:flutter_lab/lesson_13/constraints.dart';
@@ -48,6 +49,11 @@ final router = GoRouter(
           name: 'explicitAnimations',
           path: '/explicit-animations',
           builder: (context, state) => const ExplicitAnimationsScreen(),
+        ),
+        GoRoute(
+          name: 'errorHandling',
+          path: 'error-handling',
+          builder: (context, state) => UserProfileHomeworkScreen(),
         ),
       ],
     ),

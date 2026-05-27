@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_lab/error_handling_homework/data/repository/fake_user_repository.dart';
+import 'package:flutter_lab/error_handling_homework/presentation/cubit/user_profile_cubit.dart';
 import 'package:flutter_lab/lesson_18/homework_bloc/counter_bloc.dart';
 import 'package:flutter_lab/lesson_18/homework_cubit/counter_cubit.dart';
 import 'package:flutter_lab/lesson_19/bloc/rate_app_cubit.dart';
@@ -20,6 +22,10 @@ class FlutterWifgetsApp extends StatelessWidget {
         BlocProvider(create: (context) => CounterCubit()),
         BlocProvider(create: (context) => CounterBloc()),
         BlocProvider(create: (context) => RateAppCubit()),
+        BlocProvider(
+          create: (context) =>
+              UserProfileCubit(FakeUserRepository())..loadUserProfile(),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -72,6 +78,11 @@ class HomeScreen extends StatelessWidget {
             FeatureCard(
               title: 'Lesson 21 - Explicit Animations',
               onTap: () => context.goNamed('explicitAnimations'),
+            ),
+            SizedBox(height: 12),
+            FeatureCard(
+              title: 'Lesson 22 - Error handling',
+              onTap: () => context.goNamed('errorHandling'),
             ),
           ],
         ),
